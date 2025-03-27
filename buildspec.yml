@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 769433671483.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t frontend --build-arg VUE_APP_URL=$VUE_APP_URL --build-arg VUE_APP_LOGIN=$VUE_APP_LOGIN --build-arg VUE_APP_SIGNUP=$VUE_APP_SIGNUP --build-arg VUE_APP_DASHBOARD=$VUE_APP_DASHBOARD --build-arg VUE_APP_PORTFOLIO=$VUE_APP_PORTFOLIO --build-arg NODE_ENV=$NODE_ENV .
+      - docker tag frontend:latest 769433671483.dkr.ecr.ca-central-1.amazonaws.com/frontend-capstone:latest
+
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push 769433671483.dkr.ecr.ca-central-1.amazonaws.com/frontend-capstone:latest
+artifacts:
+  files: '**/*'
