@@ -15,4 +15,5 @@ phases:
       - echo Pushing the Docker image...
       - docker push 769433671483.dkr.ecr.ca-central-1.amazonaws.com/frontend-capstone:latest
 artifacts:
-  files: '**/*'
+  files:
+    - imagedefinitions.json 
