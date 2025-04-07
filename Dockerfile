@@ -13,6 +13,24 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
+ARG VUE_APP_URL
+ENV VUE_APP_URL=${VUE_APP_URL}
+
+ARG VUE_APP_LOGIN
+ENV VUE_APP_LOGIN=${VUE_APP_LOGIN}
+
+ARG VUE_APP_SIGNUP
+ENV VUE_APP_SIGNUP=${VUE_APP_SIGNUP}
+
+ARG VUE_APP_DASHBOARD
+ENV VUE_APP_DASHBOARD=${VUE_APP_DASHBOARD}
+
+ARG VUE_APP_PORTFOLIO
+ENV VUE_APP_PORTFOLIO=${VUE_APP_PORTFOLIO}
+
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
+
 # Build the application
 RUN npm run build
 
@@ -30,3 +48,4 @@ EXPOSE 80
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
+
