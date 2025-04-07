@@ -122,7 +122,7 @@
         
         try {
           const token = localStorage.getItem("token");
-          await axios.delete(`http://localhost:5000/api/portfolio/${stockId}`, {
+          await axios.delete(`${process.env.VUE_APP_URL}/api/portfolio/${stockId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 

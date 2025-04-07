@@ -91,7 +91,7 @@ export default {
           return;
         }
 
-        const response = await fetch('http://localhost:5000/api/suggestions', {
+        const response = await fetch(`${process.env.VUE_APP_URL}/api/suggestions`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
